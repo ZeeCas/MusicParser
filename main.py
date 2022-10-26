@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # Start : 10/29/22 8:00pm
 
+
+# This is INCREDIBLY rudimentary. Hoping for better formatting as the project continues. Biggest issue right now is soundcloud playlists and youtube API quotas.
+
 from youtube_parse import youtube_parse
 from spotify_parse import spotify_parse
-from tidal_parse import tidal_parse
+from tidal_parse import tidal_parse     
 from track_format import format_track
 import argparse
 
