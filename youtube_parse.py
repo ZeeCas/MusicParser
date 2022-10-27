@@ -20,15 +20,25 @@ youtube = googleapiclient.discovery.build(api_service_name, api_version, develop
 def youtube_parse(link, playlist: bool):
     if playlist:
         ids = []
+        songs = []
         request = youtube.playlistItems().list(
             part="contentDetails",
             playlistId=link.split("=")[-1],     # Get the playlist content from the link
             maxResults=100
         )
         response = request.execute()
- 
         for item in response['items']:
             ids.append(item['contentDetails']['videoId']) # Get the video id from the playlist
-        return ids
+        for id in ids:
+            request = youtube.search().list(
+                part="snippet",
+                maxResults=1,
+                q=id)                       # Youtube API search query
+            response = request.execute()
+            for item in response['items']:
+                song = item['snippet']['title']
+                artist = item['snippet']['channelTitle']
+                songs.append(f"{song} - {artist} : https://www.youtube.com/watch?v={id}") # Get the song name and artist name from the video id
+        return songs
     else:
         return [link.split("=")[-1]] # Get the video id from the link
