@@ -15,7 +15,7 @@ api_version = "v3"  # Boilerplate Youtube API stuff
 youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=os.getenv("YOUTUBE_API_KEY"))
 
 
-def format_track(music_data: list or string, youtube_output: bool = False):
+def format_track(music_data: list or str, youtube_output: bool):
     tracklist = []
     if youtube_output:
         if type(music_data) != list:
@@ -44,9 +44,8 @@ def format_track(music_data: list or string, youtube_output: bool = False):
                 response = request.execute()
                 for item in response['items']:
                     if item['id']['kind'] == "youtube#video":
-                        tracklist.append(f"{song} - {artist} : https://www.youtube.com/watch?v={item['id']['videoId']} \n")
-                        break
-                
+                        tracklist.append(f"{song} - {artist} : https://www.youtube.com/watch?v={item['id']['videoId']}")
+                        break   
             return tracklist
     else:
-        return music_data # If youtube_output is false, just return the tracklist
+        return str(music_data) # If youtube_output is false, just return the tracklist
