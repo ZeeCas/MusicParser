@@ -22,8 +22,6 @@ def main():
                 tidal_playlist = inquirer.text('Enter the Tidal playlist url')
                 playlist_name = inquirer.text('Enter the name of the playlist')
                 print(make_playlist_spotify(playlist_name, "Playlist converted using Music Parse", format_track(tidal_parse(tidal_playlist, True))))
-            else:
-                print('Please enter a valid playlist url')
         elif destinate == 'Youtube Links':
             playlist_choice = inquirer.list_input('What service is your playlist on?', choices=['Spotify', 'Tidal'])
             if playlist_choice == 'Spotify':
@@ -64,9 +62,5 @@ def main():
             .replace('[', '')
             .replace(']', '')
             .replace("'", ''))
-        else:
-            print('Please enter a valid track url')
-
-
 if __name__ == '__main__':
     main()
