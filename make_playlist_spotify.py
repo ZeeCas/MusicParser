@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import spotipy                                               # Boilerplate Spotify API imports
 from spotipy.oauth2 import SpotifyOAuth
 import time
+from yaspin import yaspin
 load_dotenv()
 
 USERNAME = os.getenv("SPOTIFY_USERNAME")
@@ -38,6 +39,7 @@ def search_spotify(spotify, track):
     results = spotify.search(q=track, limit=1)
     return results['tracks']['items'][0]['id'] # Get the track URI from the link
 
+@yaspin(text="Creating playlist...")
 def make_playlist_spotify(playlist_name, playlist_description, playlist_tracks):
     auth_manager, spotify = create_spotify()
     user_id = spotify.me()['id']
