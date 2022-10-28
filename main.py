@@ -2,6 +2,9 @@
 # Start : 10/29/22 8:00pm
 
 
+###################################
+# [DEPRECATED]
+###################################
 # This is INCREDIBLY rudimentary. Hoping for better formatting as the project continues. Biggest issue right now is soundcloud playlists and youtube API quotas.
 
 from youtube_parse import youtube_parse
